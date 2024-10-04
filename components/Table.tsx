@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     width: '151%',
+    alignSelf : 'stretch'
   },
   headerContainer: {
     flexDirection: 'row',
