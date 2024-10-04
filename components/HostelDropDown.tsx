@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex : 1000
+    zIndex : 1000,
   },
   dropdown: {
     backgroundColor: '#FAFAFA',
@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 12,
     width : '90%',
-    zIndex : 1000
+    zIndex : 1000,
+  
   },
   dropdownContainer: {
     borderColor: '#ccc',
@@ -62,7 +63,6 @@ const styles = StyleSheet.create({
   placeholder: {
     color: '#999',
     fontSize : 14,
-  
   },
   selectedItemContainer: {
     backgroundColor: '#e0e0e0',

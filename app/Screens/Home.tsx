@@ -10,9 +10,18 @@ import PrimaryButton from '@/components/PrimaryButton';
 
 
 export default function Home() {
+  const [selectCount, setSelectCount] = useState(0)
+  const [totalBookings, setTotalBookings] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
 
-    
+  const handleSelectedCount = (selectCount, totalCount, price) => {
+    setSelectCount(selectCount)
+    setTotalBookings(totalCount)
+    setTotalPrice(price)
 
+  }
+
+  const isButtonDisabled = totalBookings > selectCount
 
   return (
     <View style={styles.main}>
@@ -86,40 +95,42 @@ export default function Home() {
 
         <View style={{
           flexDirection: 'row',
-          gap : 6,
           alignItems :'center',
-          justifyContent : 'flex-start',
+          justifyContent : 'Space-Between',
           zIndex : 1000
         }}>
             <HostelDropDown/>
             <LocationDropDown/>
-            <Text>0 / 4 Cylinder </Text>
+            <Text> {selectCount} / {totalBookings} { selectCount > 1 ? 'Cylinders' : 'Cylinder' } </Text>
         </View>    
 
-        <Table/>
+        <Table
+              onSelectCountChange={handleSelectedCount}
+        />
         
         <View style={styles.footer}>
         <Text style={{ fontWeight: '700', fontSize: 18 }}>Cost Summary</Text>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={{ color: 'rgba(0, 0, 0, 0.60)' }}>Total Amount to be bought</Text>
-          <Text style={styles.price}>GHS 220.00</Text>
+          <Text style={styles.price}>GHC {totalPrice}.00</Text>
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={{ color: 'rgba(0, 0, 0, 0.60)' }}>Total fee</Text>
-          <Text>GHS 126.00</Text>
+          <Text>GHC 26.00</Text>
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={{ color: 'rgba(0, 0, 0, 0.60)' }}>Total Bookings</Text>
-          <Text>4</Text>
+          <Text>{totalBookings}</Text>
         </View>
         <View style={{ width: 'auto', height: 1, borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.10)' }}></View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={{ color: 'rgba(0, 0, 0, 0.60)' }}>Total Cost</Text>
-          <Text>GHS 346.00</Text>
+          <Text>GHC 346.00</Text>
         </View>
         <PrimaryButton
-          title={'Continue'}
+          title={'Start Filling'}
           onPress={() => navigation.navigate()}
+          disabled = {isButtonDisabled}
         />
       </View>
 
@@ -167,11 +178,12 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0, 0, 0, 0.10)',
     backgroundColor: '#F5F5F5',
     alignSelf: 'stretch',
-    position: 'absolute',
-    top: '150%',
+    position: 'static',
+    bottom: '-16%',
     width: '109%',
     gap: 16,
     paddingBottom: 44,
-    left : -16
+    left : -16,
+
   }
 });

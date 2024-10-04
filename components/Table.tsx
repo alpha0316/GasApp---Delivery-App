@@ -1,33 +1,75 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import React, { useEffect, useState }  from 'react';
+import { View, Text, StyleSheet, FlatList, ScrollView, TouchableOpacity } from 'react-native';
+
 
 const data = [
-  { id: '1', No: '1', Name: 'Nana Ama Lawrence', Hostel: 'Adombi Hostel', Size: 'Small', Price: 'GHC 70' },
-  { id: '2', No: '2', Name: 'Nana Ama Rashida', Hostel: 'Doctor', Size: 'Medium', Price: 'GHC 70'},
-  { id: '3', No: '3', Name: 'Nana Ama', Hostel: 'Doctor', Size: 'Medium', Price: 'GHC 70' },
+  { id: '1', No: '1', Name: 'Riely Ferguson', Hostel: 'Hall 7', Size: 'Small', Price: 'GHC 35' },
+  { id: '2', No: '2', Name: 'lauren Jackson', Hostel: 'Evandy - Newsite', Size: 'Medium', Price: 'GHC 70'},
+  { id: '3', No: '3', Name: 'Princess Rashida', Hostel: 'Victory Towers', Size: 'Medium', Price: 'GHC 70' },
   // Add more data as needed
 ];
 
-const Table = () => {
-  const renderHeader = () => (
-    <View style={styles.headerContainer}>
+
+
+const Table = ({onSelectCountChange}) => {
+  
+  const [selectBookingID, setSelectBookingID] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0)
+ 
+  useEffect(() =>{
+
+      const totalPrice = data.reduce((sum, item) => {
+      const price = parseFloat(item.Price.replace('GHC', ''))
+      return sum + price
+    },0)
+
+    setTotalPrice(totalPrice)
+
+    onSelectCountChange(selectBookingID.length, data.length, totalPrice)
+  },[selectBookingID])
+
+  const handleSelection = (id) => {
+    let updatedSelection;
+    if (selectBookingID.includes(id)) {
+      updatedSelection = selectBookingID.filter((selectId)=> selectId !== id )
+    }
+    else {
+      updatedSelection = ([...selectBookingID, id])
+    }
+
+    setSelectBookingID(updatedSelection)
+  }
+
+  const renderHeader = () => {
+
+    return(
+      <View style={styles.headerContainer}>
       <Text style={styles.headerNo}>#</Text>
       <Text style={styles.headerName}>Name</Text>
       <Text style={styles.headerHostel}>Hostel</Text>
       <Text style={styles.headerSize}>Size</Text>
       <Text style={styles.headerText}>Price</Text>
     </View>
-  );
+    )
+ 
+  };
 
-  const renderItem = ({ item }) => (
-    <View style={styles.rowContainer}>
-      <Text style={styles.rowNo}>{item.No}</Text>
-      <Text style={styles.rowName}>{item.Name}</Text>
-      <Text style={styles.rowHostel}>{item.Hostel}</Text>
-      <Text style={styles.rowSize}>{item.Size}</Text>
-      <Text style={styles.rowText}>{item.Price}</Text>
-    </View>
-  );
+  const renderItem = ({ item }) => {
+    
+    const isSelect = selectBookingID.includes(item.id)
+
+    return(
+      <TouchableOpacity onPress={() => handleSelection(item.id)}>
+          <View style={[styles.rowContainer, isSelect && styles.selected]}>
+          <Text style={styles.rowNo}>{item.No}</Text>
+          <Text style={styles.rowName}>{item.Name}</Text>
+          <Text style={styles.rowHostel}>{item.Hostel}</Text>
+          <Text style={styles.rowSize}>{item.Size}</Text>
+          <Text style={styles.rowText}>{item.Price}</Text>
+        </View>
+      </TouchableOpacity>
+      
+  )};
 
   return (
     <ScrollView horizontal>
@@ -73,6 +115,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
     justifyContent: 'space-evenly'
+  },
+  selected: {
+    flexDirection: 'row',
+    padding: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    justifyContent: 'space-evenly',
+    backgroundColor : 'rgba(244, 244, 244, 1)'
   },
   rowText: {
     flex: 1,

@@ -12,7 +12,7 @@ interface PrimaryButtonProps {
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({ title, onPress, style, textStyle, disabled = false }) => {
   return (
     <TouchableOpacity
-      style={[styles.button, style, disabled && styles.disabled]}
+      style={[styles.button, disabled && styles.disabled]}
       onPress={onPress}
       disabled={disabled}
     >
