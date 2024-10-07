@@ -6,11 +6,12 @@ import { StyleSheet, View, Text } from 'react-native';
  import Home from '../Screens/Home'
  import FillingProcess from '../Screens/FillingProcess';
  import CylinderDelivery from '@/app/Screens/CylinderDelivery'
+ import OTPVerification from '@/app/Screens/OTPVerification'
 
 export default function index() {
   return (
     <View style={styles.main}>
-      <CylinderDelivery/>
+      <OTPVerification/>
     </View>
   );
 }

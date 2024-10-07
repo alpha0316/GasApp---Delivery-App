@@ -34,7 +34,7 @@ const SignIn = () => {
         <BackButton onPress={() => navigation.goBack()} />
         <Text style={styles.headerTitle}>General Details</Text>
       </View>
-      <Text style={styles.label}>Email</Text>
+      <Text style={styles.label}>Enter Your Phone Number</Text>
       <TextInput
         style={styles.input}
         //value={email}
@@ -42,26 +42,11 @@ const SignIn = () => {
         //keyboardType="email-address"
         autoCapitalize="none"
       />
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
-        //value={password}
-        //onChangeText={setPassword}
-        secureTextEntry
-      />
+      <Text style={{
+        marginBottom : 24
+      }}>An OTP code will be sent to your number for verification</Text>
       {/*<Button title="Sign In" onPress={handleSignIn} />*/}
-      <PrimaryButton title='Sign In' />
-      <View style={styles.text}>
-                <Text style={{
-                    fontSize : 16,
-                    color : '#828282'
-                }}>Are you new here?</Text>
-                
-                <Text style={{
-                    fontSize : 16,
-                }}>Sign Up</Text>
-            
-            </View>
+      <PrimaryButton title='Continue'/>
     </View>
   );
 };
@@ -73,8 +58,10 @@ const styles = StyleSheet.create({
     backgroundColor : 'white'
   },
   label: {
-    fontSize: 16,
+    fontSize: 20,
     marginBottom: 8,
+    marginTop : 50,
+    fontWeight : '400'
   },
 
   header: {
