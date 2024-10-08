@@ -7,7 +7,10 @@ import BackButton from '@/components/BackButton';
 
 
 
-const SignIn = () => {
+const PhoneNumber = ({ navigation }) => {
+
+  const [input, setInput] = useState('')
+
   {/*const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState('');
@@ -26,27 +29,27 @@ const SignIn = () => {
     }
   };*/}
   
-
+  const isButtonDisabled = input.length < 10
 
   return (
     <View style={styles.container}>
        <View style={styles.header}>
         <BackButton onPress={() => navigation.goBack()} />
-        <Text style={styles.headerTitle}>General Details</Text>
+        <Text style={styles.headerTitle}>Phone Number</Text>
       </View>
       <Text style={styles.label}>Enter Your Phone Number</Text>
       <TextInput
         style={styles.input}
-        //value={email}
-        //onChangeText={setEmail}
-        //keyboardType="email-address"
+        value={input}
+        onChangeText={setInput}
+        keyboardType="phone-pad"
         autoCapitalize="none"
       />
       <Text style={{
         marginBottom : 24
       }}>An OTP code will be sent to your number for verification</Text>
       {/*<Button title="Sign In" onPress={handleSignIn} />*/}
-      <PrimaryButton title='Continue'/>
+      <PrimaryButton title='Continue' onPress={() => navigation.navigate('OTPVerification')} disabled ={isButtonDisabled}/>
     </View>
   );
 };
@@ -58,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor : 'white'
   },
   label: {
-    fontSize: 20,
+    fontSize: 18,
     marginBottom: 8,
     marginTop : 50,
     fontWeight : '400'
@@ -93,4 +96,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default SignIn;
+export default PhoneNumber;

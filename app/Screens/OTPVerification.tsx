@@ -7,7 +7,7 @@ import BackButton from '@/components/BackButton';
 
 
 
-const OTPVerification = () => {
+const OTPVerification = ({navigation}) => {
   const [otp, setOtp] = useState(['','','',''])
   const inputsRef = useRef([])
 
@@ -63,7 +63,7 @@ const OTPVerification = () => {
           ))}
       </View>
 
-      <PrimaryButton title='Verify' disabled = {isButtonDisabled}/>
+      <PrimaryButton title='Verify' disabled = {isButtonDisabled} onPress={() => navigation.navigate('Home')}/>
       <View style ={{
         alignItems : 'center',
         flexDirection : 'row',

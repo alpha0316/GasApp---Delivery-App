@@ -15,6 +15,7 @@ const FillingProcess = () => {
   const [selectCount, setSelectCount] = useState(0)
   const [totalBookings, setTotalBookings] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
+  const isButtonDisabled = totalBookings > selectCount
 
   const handleSelectedCount = (selectCount, totalCount, price) => {
     setSelectCount(selectCount)
@@ -47,7 +48,7 @@ const FillingProcess = () => {
       <View style={{
   
       }}>
-        <PrimaryButton title = 'Complete Delivery' />
+        <PrimaryButton title = 'Complete Delivery' disabled={isButtonDisabled} />
       </View>
     
     </View>

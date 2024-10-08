@@ -9,7 +9,7 @@ import PrimaryButton from '@/components/PrimaryButton';
 
 
 
-export default function Home() {
+export default function Home({navigation}) {
   const [selectCount, setSelectCount] = useState(0)
   const [totalBookings, setTotalBookings] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
@@ -129,7 +129,7 @@ export default function Home() {
         </View>
         <PrimaryButton
           title={'Start Filling'}
-          onPress={() => navigation.navigate()}
+          onPress={() => navigation.navigate('FillingProcess')}
           disabled = {isButtonDisabled}
         />
       </View>

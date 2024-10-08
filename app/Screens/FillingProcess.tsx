@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, Animated } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Animated, Button } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import PrimaryButton from '@/components/PrimaryButton';
 import BackButton from '@/components/BackButton';
@@ -18,7 +18,7 @@ const customers = [
   // Add more customer data as needed
 ];
 
-const FillingProcess = () => {
+const FillingProcess = ({navigation}) => {
 
   const [selectedIndex, SetSelectedIndex] = useState(0)
   const [filledAmount, setFilledAmount] = useState(0)
@@ -40,6 +40,7 @@ const FillingProcess = () => {
   const handleNextPress = () => {
     const nextIndex = Math.min(selectedIndex + 1, customers.length - 1)
     setFilledAmount((prev) => prev + customers[selectedIndex, selectedIndex].amount)  
+    navigation.navigate('CylinderDelivery')
 
     FlatListRef.current?.scrollToOffset({
       offset: nextIndex * ITEM_HEIGHT,

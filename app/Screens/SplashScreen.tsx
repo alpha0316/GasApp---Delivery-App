@@ -1,25 +1,18 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-{/*import { useNavigation } from '@react-navigation/native';
-import { FIREBASE_AUTH } from './../../firebaseConfig';
-import { onAuthStateChanged } from 'firebase/auth';*/}
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function SplashScreen() {
-  {/*const navigation = useNavigation();
+ const navigation = useNavigation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      onAuthStateChanged(FIREBASE_AUTH, (user) => {
-        if (user) {
-          navigation.navigate('Insidelayout');
-        } else {
-          navigation.navigate('Onboarding');
-        }
-      });
+        navigation.replace('PhoneNumber')
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [navigation]);*/}
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
